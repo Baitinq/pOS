@@ -1,0 +1,10 @@
+out/
+build/
+
+pOS.config
+pOS.creator
+pOS.creator.user
+pOS.cflags
+pOS.cxxflags
+pOS.files
+pOS.includes
