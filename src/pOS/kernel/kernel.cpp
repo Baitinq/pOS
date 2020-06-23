@@ -1,18 +1,21 @@
-#include <stdio.h>
 #include <kernel/pOS.h>
-#include <kernel/time.h>
-#include <kernel/debug.h>
-#include <kernel/drivers.h>
-#include <math.h>
-#include <assert.h>
 
 extern "C" int kmain(void)
 {
     #ifdef DEBUG
     Debug::set_serial_debug(true);
     #endif
+
+    GDT::init();
+    IDT::init();
+    ISRS::install();
+
     TTY::tty_initialize();
     Drivers::load_drivers();
+
+    /*asm volatile("mov %eax, 0x100  \t\n"
+         "mov %ecx, 0x000            \t\n"
+         "div %ecx                       ");*/
 
     printf("Welcome to pOS v%s\n", VERSION);
     dbgprintf("Hi host %d!\n", pow(3, 2));
@@ -23,5 +26,5 @@ extern "C" int kmain(void)
 
     ASSERT(false);
 
-	return 1;
+    return 1;
 }

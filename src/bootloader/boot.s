@@ -30,4 +30,7 @@ _start:
 	cli
 .inf:	hlt
 	jmp .inf
-.end:	
+.end:
+
+%include "utils/isrs.s"
+%include "utils/irq.s"
