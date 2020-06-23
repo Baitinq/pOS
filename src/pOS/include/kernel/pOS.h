@@ -15,6 +15,8 @@
 #define DEBUG
 #define VERSION "meme"
 
+//#define TIME_FORMAT_12H
+
 #define DRIVER_EXAMPLE
 
 #endif

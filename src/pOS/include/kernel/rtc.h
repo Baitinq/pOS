@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <kernel/time.h>
 #include <kernel/system.h>
+#include <kernel/pOS.h>
 
 #define CMOS_PORT 0x70
 #define CMOS_DATA 0x71

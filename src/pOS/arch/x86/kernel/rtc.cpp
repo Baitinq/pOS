@@ -18,6 +18,11 @@ uint8_t RTC::read_cmos(uint8_t registr)
     if(!(System::inb(CMOS_DATA) & 0x04)) //to binary
         result = (result & 0x0F) + ((result/ 16) * 10);
 
+    #ifdef TIME_FORMAT_12H
+    if(registr == CMOS_READ_HOUR)
+        result = ((result & 0x7F) + 12) % 24;
+    #endif
+
     return result;
 }
 
