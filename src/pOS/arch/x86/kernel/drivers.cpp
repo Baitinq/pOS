@@ -3,7 +3,7 @@
 Driver* Drivers::toload_drivers[1]; //vec
 Driver* Drivers::loaded_drivers[1];
 
-void Drivers::add_drivers()
+void Drivers::add_drivers(void)
 {
     #ifdef DRIVER_EXAMPLE
     ADD_DRIVER(ExampleDriver);
@@ -19,7 +19,7 @@ int Drivers::add_driver(Driver* driver)
     return 0;
 }
 
-int Drivers::load_drivers()
+int Drivers::load_drivers(void)
 {
     dbgprintf("loading drivers\n");
 
@@ -36,7 +36,7 @@ int Drivers::load_drivers()
     return result;
 }
 
-int Drivers::unload_drivers()
+int Drivers::unload_drivers(void)
 {
     dbgprintf("unloading drivers\n");
     int result = 0;

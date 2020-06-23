@@ -7,19 +7,19 @@
 class Driver
 {
 public:
-     virtual int load() = NULL;
-     virtual int unload() = NULL;
-     virtual bool isloaded() = NULL;
-     virtual const char* get_name() = NULL;
+     virtual int load(void) = NULL;
+     virtual int unload(void) = NULL;
+     virtual bool isloaded(void) = NULL;
+     virtual const char* get_name(void) = NULL;
 };
 
 class Drivers
 {
 public:
-    static void add_drivers();
+    static void add_drivers(void);
     static int add_driver(Driver* driver);
-    static int load_drivers();
-    static int unload_drivers();
+    static int load_drivers(void);
+    static int unload_drivers(void);
 
 private:
     static Driver* toload_drivers[1]; //need vectors - mem managing
@@ -31,10 +31,10 @@ private:
 class ExampleDriver : public Driver
 {
 public:
-    int load();
-    int unload();
-    bool isloaded();
-    const char* get_name();
+    int load(void);
+    int unload(void);
+    bool isloaded(void);
+    const char* get_name(void);
 };
 
 #define ADD_DRIVER(driver)          \
