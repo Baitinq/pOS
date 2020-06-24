@@ -1,4 +1,4 @@
-#include <kernel/shell.h>
+#include <kernel/shell/shell.h>
 
 char Shell::prefix[10];
 
@@ -8,7 +8,7 @@ int Shell::init(void)
     return run();
 }
 
-int Shell::run(void)     /* TODO: implement args */
+int Shell::run(void)
 {
     char c;
     char cmd[20];        /* Mem management */
@@ -17,13 +17,16 @@ int Shell::run(void)     /* TODO: implement args */
     while((c = getc()) && c != EOF)
     {
         putc(c);
-
-        if(c == '\n')
+        /* TODO: Handle signals */
+        if(c == '\b')
+            indx--;
+        else if(c == '\n')
         {
             cmd[indx] = '\0';
             indx = 0;
 
-            handle_cmd(cmd);
+            CMD_MANAGER::execute(cmd);
+
             printf(Shell::prefix);
         }
         else
@@ -31,12 +34,6 @@ int Shell::run(void)     /* TODO: implement args */
     }
 
     ASSERT(c == EOF);
-    return 0;
-}
-
-int Shell::handle_cmd(const char* cmd)
-{
-    printf("Unknown cmd: %s\n", cmd);
     return 0;
 }
 
