@@ -5,10 +5,6 @@
 
 #define ASSERT(EXPR) (void)((EXPR) || (_assert (#EXPR, __FILE__, __LINE__),0))
 
-static inline void _assert(const char* expr, const char* file, int line)
-{
-    printf("Assertion failed! (%s) - %s:%d\n", expr, file ,line);
-    /* TODO: Implement exit */
-}
+extern "C" void _assert (const char *msg, const char *file, int line);
 
 #endif
