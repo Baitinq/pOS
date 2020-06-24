@@ -9,6 +9,5 @@ void keyboard_handler(struct regs *r)
 
     //dbgprintf("Sc: %d\n", scancode);
 
-    if(!KB_BUF::scan(scancode))
-        putc(KB_BUF::keyboard_dequeue());
+    KB_BUF::scan(scancode);
 }

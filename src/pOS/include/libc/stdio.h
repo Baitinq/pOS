@@ -14,6 +14,8 @@ int sprintf(char* buf, const char* format, ...);
 int print(const char* str);
 int putc(const char c);
 
+char getc(void); //for now void
+
 class Debug
 {
 public:
