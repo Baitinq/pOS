@@ -59,7 +59,10 @@ int TTY::tty_update(void) /* NOT EFFICIENT */
 {
     for (size_t x = 0; x < VGA::VGA::VGA_WIDTH; x++)
         for (size_t y = 0; y < VGA::VGA::VGA_HEIGHT; y++)
-            tty_buf[y * VGA::VGA::VGA_WIDTH + x] = tty_map[x][y];
+        {
+            uint16_t c = tty_map[x][y] == EMPTY ? VGA::vga_entry(' ', tty_color) : tty_map[x][y];
+            tty_buf[y * VGA::VGA::VGA_WIDTH + x] = c;
+        }
 
     tty_cursor_updt();
     tty_scroll(0);
@@ -77,6 +80,7 @@ int TTY::tty_putentryat(unsigned char c, uint8_t color, size_t x, size_t y)
     else if(c == '\t')
     {
         tty_x += TAB_INDENTATION;
+        tty_map[x][y] = VGA::vga_entry(' ', color);
     } //add \r, delete etc
     else
         tty_map[x][y] = VGA::vga_entry(c, color);
@@ -86,6 +90,10 @@ int TTY::tty_putentryat(unsigned char c, uint8_t color, size_t x, size_t y)
         tty_x = tty_x - VGA::VGA::VGA_WIDTH;
         tty_y++;
     }
+
+    /* So delete works nicely (stops after jumping) */
+    if(tty_map[tty_x][tty_y] == EMPTY)
+        tty_map[tty_x][tty_y] = VGA::vga_entry(' ', tty_color);
 
     tty_update();
     return 0;
@@ -99,7 +107,7 @@ int TTY::tty_initialize(void)
     tty_buf = static_cast<uint16_t*>(VGA::VGA_MEMORY);
     for (size_t y = 0; y < VGA::VGA_HEIGHT; y++)
         for (size_t x = 0; x < VGA::VGA_WIDTH; x++)
-            tty_map[x][y] = VGA::vga_entry(' ', tty_color); //IMPLEMENT ANOTHER CHAR FOR EMPTY STAFF SO THAT WHEN WE DELETE IT DOESNT STOP AFTER JUST 1
+            tty_map[x][y] = EMPTY;
 
     tty_update();
 
@@ -133,15 +141,19 @@ int TTY::tty_delete(unsigned int num)
         {
             newy = 0;
             newx = 0;
+            return 0;
         }
     }
 
     tty_x = newx;
     tty_y = newy;
 
-    tty_map[tty_x][tty_y] = VGA::vga_entry(' ', tty_color);
+    if(tty_map[tty_x][tty_y] != EMPTY)
+    {
+        tty_map[tty_x][tty_y] = EMPTY;
+        num--;
+    }
 
-    num--;
     if(num > 0)
         tty_delete(num);
 

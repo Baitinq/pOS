@@ -6,6 +6,8 @@
 #include <kernel/system.h>
 #include <kernel/pOS.h>
 
+#define EMPTY 0
+
 class TTY
 {
 public:
