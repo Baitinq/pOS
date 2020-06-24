@@ -1,4 +1,5 @@
 [] Write x86 bootloader
-[] Add interrupts
 [] More cpp features
 [] Code cleanup
+[] Add memory management
+[] Add an ACPI interface
