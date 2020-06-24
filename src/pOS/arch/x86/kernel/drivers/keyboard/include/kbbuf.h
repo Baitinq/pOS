@@ -19,9 +19,10 @@ class KB_BUF
 public:
     static int init(void);
     static int scan(unsigned char code);
-    static void keyboard_enqueue(unsigned char ascii);
     static unsigned char keyboard_dequeue(void);
 private:
+    static void keyboard_enqueue(unsigned char ascii);
+    static int handle_keybind(unsigned char ascii, int type);
     static keyboard_buffer keyboard_buf;
 };
 

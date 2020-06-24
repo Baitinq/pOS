@@ -13,6 +13,8 @@ int KB_BUF::init(void)
 int KB_BUF::scan(unsigned char code)
 {
   static bool shifted = 0;
+  static bool ctrled = 0;
+  static bool alted = 0;
   int result = 1;
 
   switch(code)
@@ -56,13 +58,39 @@ int KB_BUF::scan(unsigned char code)
         shifted = false;
         break;
 
+    case LCTRL_PRESS:
+    //case RCTRL_PRESS:
+        ctrled = true;
+        break;
+
+    case LCTRL_RELEASE:
+    //case RCTRL_RELEASE:
+        ctrled = false;
+        break;
+
+    case LALT_PRESS:
+    //case RALT_PRESS:
+        alted = true;
+        break;
+
+    case LALT_RELEASE:
+    //case RALT_RELEASE:
+        alted = false;
+        break;
+
     default:
       if(!(code & 0x80))
       {
+          unsigned char ascii;
         if(shifted)
-            keyboard_enqueue(shift_scancode[code]);
+            ascii = shift_scancode[code];
         else
-            keyboard_enqueue(scancode[code]);
+            ascii = scancode[code];
+
+        if(ctrled || alted)
+            handle_keybind(ascii, ctrled ? 1 : -1);
+        else
+            keyboard_enqueue(ascii);
 
         result = 0;
       }
@@ -72,6 +100,15 @@ int KB_BUF::scan(unsigned char code)
   return result;
 }
 
+int KB_BUF::handle_keybind(unsigned char ascii, int type)
+{
+    UNUSED_VARIABLE(ascii);
+    UNUSED_VARIABLE(type);
+    //if(type == 1); /* CTRL */
+    //else if (type == -1); /* ALT */
+    /* TODO: Signals */
+    return 0;
+}
 
 unsigned char KB_BUF::keyboard_dequeue(void)
 {
