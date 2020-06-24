@@ -9,6 +9,8 @@
 
 #define EOF (-1)
 
+extern bool serial_debug;
+
 int printf(const char* format, ...);
 int sprintf(char* buf, const char* format, ...);
 int print(const char* str);
