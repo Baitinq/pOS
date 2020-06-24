@@ -23,6 +23,8 @@ extern "C" int kmain(void)
 
     printf("Current time: %s (%s-%d-%d%d)\n", Time::get_date_formatted(), Time::get_month_string(), Time::get_day(), Time::get_century() - 1, Time::get_year());
 
+    Shell::init();
+
     System::idle_loop();
 
     ASSERT(false);

@@ -5,6 +5,7 @@
 #include <math.h>
 #include <assert.h>
 
+#include <kernel/shell.h>
 #include <kernel/time.h>
 #include <kernel/debug.h>
 #include <kernel/drivers.h>
