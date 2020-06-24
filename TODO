@@ -4,4 +4,3 @@
 [] Add memory management
 [] Add an ACPI interface
 [] Add signals
-[] Add better backspace, as stuff not deleted if getc()

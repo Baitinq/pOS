@@ -2,6 +2,8 @@
 #define _SYSTEM_H_
 
 #include <stdint.h>
+#include <assert.h>
+#include <kernel/acpi.h>
 
 class System
 {

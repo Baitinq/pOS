@@ -1,5 +1,12 @@
 #include <kernel/acpi.h>
 
+void ACPI::halt(void)
+{
+    asm volatile("cli   \t\n"
+                 "hlt       ");
+    ASSERT(false);
+}
+
 void ACPI::shutdown(void)
 {
     System::outw(0x604, 0x2000); /* QEMU temp implementation */

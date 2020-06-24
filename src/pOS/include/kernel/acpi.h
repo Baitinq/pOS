@@ -7,6 +7,7 @@
 class ACPI
 {
 public:
+    static void halt(void);
     static void shutdown(void);
     static void reboot(void);
 };

@@ -39,7 +39,8 @@ void System::outl(uint16_t port, uint32_t data)
 int System::idle_loop(void)
 {
     while(1)
-        asm("hlt");
+        ACPI::halt();
 
+    ASSERT(false);
     return 1;
 }
