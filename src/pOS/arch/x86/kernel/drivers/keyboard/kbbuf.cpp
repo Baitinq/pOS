@@ -19,11 +19,8 @@ int KB_BUF::scan(unsigned char code)
 
   switch(code)
   {
+  /* IMPLEMENT WITH SIG CODES */
     case ESC:
-        break;
-
-    case BACKSPACE:
-        TTY::tty_delete(1);
         break;
 
     case UP_ARROW:
@@ -47,6 +44,7 @@ int KB_BUF::scan(unsigned char code)
         else
             TTY::tty_cursor_move(0, +1);
         break;
+    /* IMPLEMENT WITH SIG CODES */
 
     case LSHIFT_PRESS:
     case RSHIFT_PRESS:

@@ -81,7 +81,14 @@ int TTY::tty_putentryat(unsigned char c, uint8_t color, size_t x, size_t y)
     {
         tty_x += TAB_INDENTATION;
         tty_map[x][y] = VGA::vga_entry(' ', color);
-    } //add \r, delete etc
+    }
+    else if(c == '\b')
+    {
+        TTY::tty_delete(1);
+        tty_x--;
+    }
+    else if(c == '\r')
+        tty_x = 0;
     else
         tty_map[x][y] = VGA::vga_entry(c, color);
 
