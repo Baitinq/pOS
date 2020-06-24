@@ -3,3 +3,4 @@
 [] Code cleanup
 [] Add memory management
 [] Add an ACPI interface
+[] Add signals
