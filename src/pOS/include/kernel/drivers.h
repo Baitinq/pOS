@@ -2,7 +2,7 @@
 #define _DRIVER_H_
 
 #include <kernel/debug.h>
-#include <kernel/pOS.h>
+#include <kernel/interrupts/irq.h>
 
 class Driver
 {
@@ -28,7 +28,7 @@ private:
 
 /* ALL DRIVERS */
 
-class ExampleDriver : public Driver
+class KeyboardDriver : public Driver
 {
 public:
     int load(void);

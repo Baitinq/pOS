@@ -1,4 +1,4 @@
-#include <kernel/pOS.h>
+#include <kernel/kernel.h>
 
 extern "C" int kmain(void)
 {
@@ -6,11 +6,12 @@ extern "C" int kmain(void)
     Debug::set_serial_debug(true);
     #endif
 
+    TTY::tty_initialize();
+
     GDT::init();
     IDT::init();
     ISRS::install();
 
-    TTY::tty_initialize();
     Drivers::load_drivers();
 
     /*asm volatile("mov %eax, 0x100  \t\n"
