@@ -35,7 +35,7 @@ void signal_handler(Signal_Type signal)
 
 int Shell::init(void)
 {
-    Shell::set_prefix("pOS#");
+    Shell::set_prefix(SHELL_PREFIX);
     Signals::register_recieve(signal_handler);
     return run();
 }

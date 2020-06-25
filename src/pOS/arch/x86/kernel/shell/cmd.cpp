@@ -17,6 +17,10 @@ int CMD_MANAGER::execute(char* cmd)
         case str2int("c"):
              return CMD_Clear().execute(cmd);
 
+        case str2int("date"):
+        case str2int("time"):
+            return CMD_Date().execute(cmd);
+
         case str2int("halt"):
         case str2int("hlt"):
             return CMD_Halt().execute(cmd);

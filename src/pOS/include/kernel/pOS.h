@@ -3,6 +3,7 @@
 
 #define DEBUG
 #define VERSION "meme"
+#define SHELL_PREFIX "pOS#"
 
 #define KB_US
 
