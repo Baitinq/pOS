@@ -2,11 +2,13 @@
 #define _KERNEL_H_
 
 #include <stdio.h>
+#include <unistd.h>
 #include <math.h>
 #include <assert.h>
 
 #include <kernel/shell/shell.h>
 #include <kernel/time.h>
+#include <kernel/timer.h>
 #include <kernel/debug.h>
 #include <kernel/drivers.h>
 #include <kernel/acpi.h>
