@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include <kernel/tty.h>
+#include <kernel/signals.h>
 #include "scancodes.h"
 
 #define KEYBUFSIZ 128

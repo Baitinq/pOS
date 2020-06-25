@@ -2,22 +2,45 @@
 
 char Shell::prefix[10];
 
+void signal_handler(Signal_Type signal)
+{
+    switch(signal)
+    {
+        case ESC_SIG:
+            break;
+        case LEFT_ARROW_SIG:
+            TTY::tty_cursor_move(-1, 0);
+            break;
+        case RIGHT_ARROW_SIG:
+            TTY::tty_cursor_move(+1, 0);
+            break;
+        case UP_ARROW_SIG:
+            /* TODO: implement history */
+            break;
+        case DOWN_ARROW_SIG:
+            break;
+        case KILL_SIG:
+            break;
+    }
+}
+
 int Shell::init(void)
 {
     Shell::set_prefix("pOS# ");
+    Signals::register_recieve(signal_handler);
     return run();
 }
 
 int Shell::run(void)
 {
     char c;
-    char cmd[20];        /* Mem management */
     int indx = 0;
+    char cmd[20];        /* Mem management */
     printf("pOS# ");
     while((c = getc()) && c != EOF)
     {
         putc(c);
-        /* TODO: Handle signals */
+
         if(c == '\b')
             indx--;
         else if(c == '\n')

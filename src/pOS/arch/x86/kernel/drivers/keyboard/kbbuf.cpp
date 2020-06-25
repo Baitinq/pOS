@@ -19,30 +19,24 @@ int KB_BUF::scan(unsigned char code)
 
   switch(code)
   {
-  /* IMPLEMENT WITH SIG CODES */
     case ESC:
+        Signals::send_signal(ESC_SIG);
         break;
 
     case UP_ARROW:
-        if(shifted)
-            TTY::tty_scroll(+1);
-        else
-            TTY::tty_cursor_move(0, -1);
+        Signals::send_signal(UP_ARROW_SIG);
         break;
 
     case LEFT_ARROW:
-        TTY::tty_cursor_move(-1, 0);
+        Signals::send_signal(LEFT_ARROW_SIG);
         break;
 
     case RIGHT_ARROW:
-        TTY::tty_cursor_move(1, 0);
+        Signals::send_signal(RIGHT_ARROW_SIG);
         break;
 
     case DOWN_ARROW:
-        if(shifted)
-            TTY::tty_scroll(-1);
-        else
-            TTY::tty_cursor_move(0, +1);
+        Signals::send_signal(DOWN_ARROW_SIG);
         break;
     /* IMPLEMENT WITH SIG CODES */
 

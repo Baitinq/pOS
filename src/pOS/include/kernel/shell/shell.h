@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <assert.h>
+#include <kernel/signals.h>
 #include <kernel/shell/cmd.h>
 
 class Shell
