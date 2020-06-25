@@ -25,6 +25,7 @@ ADD_CMD(CMD_Clear);
 ADD_CMD(CMD_Shutdown);
 ADD_CMD(CMD_Reboot);
 ADD_CMD(CMD_Halt);
+ADD_CMD(CMD_Date);
 ADD_CMD(CMD_Test);
 
 #endif
