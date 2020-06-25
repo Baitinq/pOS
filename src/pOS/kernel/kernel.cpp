@@ -13,6 +13,8 @@ extern "C" int kmain(void)
     IDT::init();
     ISRS::install();
 
+    PhysM::init();
+
     Drivers::load_drivers();
 
     /*asm volatile("mov %eax, 0x100  \t\n"

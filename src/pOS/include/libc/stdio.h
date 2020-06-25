@@ -6,6 +6,7 @@
 #include <kernel/tty.h>
 #include <printf_internal.h>
 #include <kernel/serial.h>
+#include "../../arch/x86/kernel/drivers/keyboard/include/kbbuf.h"
 
 #define EOF (-1)
 

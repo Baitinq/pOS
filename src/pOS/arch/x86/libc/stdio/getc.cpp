@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "../../kernel/drivers/keyboard/include/kbbuf.h"
 
 char getc(void)
 {
