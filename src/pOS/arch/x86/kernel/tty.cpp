@@ -88,7 +88,7 @@ int TTY::tty_putentryat(unsigned char c, uint8_t color, size_t x, size_t y)
         tty_x--;
     }
     else if(c == '\r')
-        tty_x = 0;
+        tty_x = -1;
     else
         tty_map[x][y] = VGA::vga_entry(c, color);
 
