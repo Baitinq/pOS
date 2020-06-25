@@ -26,6 +26,10 @@ int CMD_MANAGER::execute(char* cmd)
 
         case str2int("reboot"):
             return CMD_Reboot().execute(cmd);
+
+        case str2int("test"):
+        case str2int("t"):
+            return CMD_Test().execute(cmd);
     }
 
     printf("Unknown cmd: %s\n", cmd);

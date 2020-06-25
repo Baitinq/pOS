@@ -26,7 +26,7 @@ void signal_handler(Signal_Type signal)
 
 int Shell::init(void)
 {
-    Shell::set_prefix("pOS# ");
+    Shell::set_prefix("pOS#");
     Signals::register_recieve(signal_handler);
     return run();
 }
@@ -34,9 +34,10 @@ int Shell::init(void)
 int Shell::run(void)
 {
     char c;
+    int return_code = 0;
     int indx = 0;
     char cmd[20];        /* Mem management */
-    printf("pOS# ");
+    printf("%s ", Shell::prefix);
     while((c = getc()) && c != EOF)
     {
         putc(c);
@@ -48,9 +49,13 @@ int Shell::run(void)
             cmd[indx] = '\0';
             indx = 0;
 
-            CMD_MANAGER::execute(cmd);
+            return_code = CMD_MANAGER::execute(cmd);
 
-            printf(Shell::prefix);
+            char retstr[5];
+            sprintf(retstr, "(%d)", return_code);
+            if(!return_code)
+                retstr[0] = '\0';
+            printf("%s%s ", retstr, Shell::prefix);
         }
         else
             cmd[indx++] = c;

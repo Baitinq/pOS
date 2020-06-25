@@ -2,6 +2,7 @@
 #define _SHELL_H_
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <kernel/signals.h>
 #include <kernel/shell/cmd.h>

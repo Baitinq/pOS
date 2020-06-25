@@ -40,7 +40,7 @@ uint8_t Time::get_minute(void)
     return Time::get_date().minute;
 }
 
-uint8_t Time::get_hour(void) //define so it can be 24h
+uint8_t Time::get_hour(void)
 {
     return Time::get_date().hour;
 }
