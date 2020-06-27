@@ -1,6 +1,6 @@
 [] Write x86 bootloader
-[] More cpp features
+[] More cpp features (implement new and delete)
 [] Code cleanup
-[] Add memory management
 [] Add an ACPI interface
-[] Add signals
+[] Fix shell cmd delete bugs
+[] Refractor some code to use malloc and free such as strtok
