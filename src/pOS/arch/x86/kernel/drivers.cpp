@@ -5,7 +5,7 @@ Driver* Drivers::loaded_drivers[1];
 
 void Drivers::add_drivers(void)
 {
-    #ifdef DRIVER_EXAMPLE
+    #ifdef DRIVER_KEYBOARD
     ADD_DRIVER(KeyboardDriver);
     #endif
 }

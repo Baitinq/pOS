@@ -8,9 +8,10 @@
 #define KB_US
 
 #define TAB_INDENTATION 4
+#define MEM_SIZE 1 * 1024 * 1024
 
 //#define TIME_FORMAT_12H
 
-#define DRIVER_EXAMPLE
+#define DRIVER_KEYBOARD
 
 #endif
