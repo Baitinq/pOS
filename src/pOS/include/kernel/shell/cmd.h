@@ -5,7 +5,7 @@
     class name : public CMD                 \
     {                                       \
     public:                                 \
-        int execute(const char* args);      \
+        int execute();      \
     };
 
 class CMD_MANAGER
@@ -17,7 +17,7 @@ public:
 class CMD
 {
 public:
-    virtual int execute(const char* args);
+    virtual int execute();
 };
 
 /* SHELL CMDS */

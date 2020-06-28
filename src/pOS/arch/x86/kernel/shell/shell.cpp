@@ -51,7 +51,7 @@ int Shell::run(void)
 
         if(c == '\b')
         {
-            cmd[indx] = c;
+            cmd[--indx] = 0;
         }
         else if(c == '\n')
         {

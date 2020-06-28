@@ -1,9 +1,17 @@
 #include <kernel/shell/cmd.h>
 #include <kernel/acpi.h>
+#include <kernel/debug.h>
 
-int CMD_Reboot::execute(const char* args)
+int CMD_Reboot::execute()
 {
-    UNUSED_VARIABLE(args);
+    dbgprintf("args: ");
+    char* arg = strtok(NULL, " ");
+    do
+    {
+        dbgprintf("%s, ", arg);
+        arg = strtok(NULL, " ");
+    } while(arg);
+    dbgprintf("\n");
     ACPI::reboot();
     return 0;
 }
