@@ -25,12 +25,12 @@ int PhysM::print_debug(void)
 int PhysM::init(void)
 {
     total_blocks = MEM_SIZE / BLOCK_SIZE;
-    memory = memset((void*)(&end), 0, total_blocks * BLOCK_SIZE);
+    memory = memset(static_cast<void*>(&end), 0, total_blocks * BLOCK_SIZE);
 
     /* Init memory in blocks */
     for(size_t i = 0; i < total_blocks; i++)
     {
-        blocks[i].memory = (char*)memory + (i * BLOCK_SIZE);
+        blocks[i].memory = static_cast<uint8_t*>(memory) + (i * BLOCK_SIZE);
     }
 
     return 0;
@@ -41,6 +41,8 @@ void* PhysM::malloc(size_t size, bool calloc)
     if(!size)
         return NULL;
 
+    usleep(1); //so id is diff
+
     uint32_t num = size / BLOCK_SIZE;
     if(num * BLOCK_SIZE < size)
         num++;
@@ -49,6 +51,9 @@ void* PhysM::malloc(size_t size, bool calloc)
 
 void* PhysM::realloc(void* oldmem, size_t size)
 {
+    if(!oldmem || !size)
+        return NULL;
+
     void* newmem = malloc(size, false);
     size_t oldsize = get_blocks_num(oldmem) * BLOCK_SIZE;
 
@@ -102,8 +107,9 @@ int PhysM::free_all_blocks_from(Block& block)
 
 Block& PhysM::find_block_from_memory(void* memory_from_block)
 {
-    int index = ((char*)memory_from_block - (char*)memory) / BLOCK_SIZE;//calculate block num from addr
+    uint32_t index = (static_cast<uint8_t*>(memory_from_block) - static_cast<uint8_t*>(memory)) / BLOCK_SIZE;//calculate block num from addr
     //printf("freeing block %d\n", index);
+    ASSERT(index < total_blocks);
     return blocks[index];
 }
 

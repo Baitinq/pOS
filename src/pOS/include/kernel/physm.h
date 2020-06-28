@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <kernel/timer.h>
 
 #define BLOCK_SIZE 20
